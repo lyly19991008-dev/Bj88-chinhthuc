@@ -3,57 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BJ88 - Trang Chủ Chính Thức</title>
+    <title>BJ88 - Giao Diện Tổng Hợp</title>
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #1a1a1a; color: white; margin: 0; padding: 0; overflow-x: hidden; }
         
         /* HEADER */
         .header { background: #111; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ff9800; }
-        .logo img { height: 50px; }
+        .logo img { height: 45px; object-fit: contain; }
         .auth-buttons button { padding: 8px 15px; margin-left: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
         .btn-login { background: #ff9800; color: white; }
         .btn-register { background: #444; color: white; }
 
-        /* BANNER CHUYỂN ĐỘNG TỰ ĐỘNG (6 ẢNH) */
-        .banner-container { width: 100%; overflow: hidden; position: relative; background: #000; margin: 0 auto; }
-        .banner-slide { display: flex; width: 600%; animation: slide-animation 18s infinite; }
-        .banner-slide img { width: 16.666%; display: block; }
+        /* BANNER CHUYỂN ĐỘNG TO (TỶ LỆ 16/5.5) */
+        .banner-container { width: 100%; overflow: hidden; position: relative; background: #000; aspect-ratio: 16 / 5.5; }
+        .banner-slide { display: flex; width: 600%; height: 100%; animation: slide-animation 18s infinite; }
+        .banner-slide img { width: 16.666%; height: 100%; object-fit: cover; display: block; }
         
         @keyframes slide-animation {
-            0% { transform: translateX(0); }
-            14% { transform: translateX(0); }
-            16% { transform: translateX(-16.666%); }
-            30% { transform: translateX(-16.666%); }
-            32% { transform: translateX(-33.332%); }
-            46% { transform: translateX(-33.332%); }
-            48% { transform: translateX(-49.998%); }
-            62% { transform: translateX(-49.998%); }
-            64% { transform: translateX(-66.664%); }
-            78% { transform: translateX(-66.664%); }
-            80% { transform: translateX(-83.33%); }
-            94% { transform: translateX(-83.33%); }
+            0%, 14% { transform: translateX(0); }
+            16%, 30% { transform: translateX(-16.666%); }
+            32%, 46% { transform: translateX(-33.332%); }
+            48%, 62% { transform: translateX(-49.998%); }
+            64%, 78% { transform: translateX(-66.664%); }
+            80%, 94% { transform: translateX(-83.33%); }
             100% { transform: translateX(0); }
         }
 
-        /* THANH MENU ICON CHÍNH THỨC */
+        /* MENU ICON CHÍNH THỨC */
         .game-menu { display: flex; overflow-x: auto; background: #222; padding: 15px 10px; gap: 10px; justify-content: flex-start; border-bottom: 1px solid #333; }
         .menu-item { display: flex; flex-direction: column; align-items: center; min-width: 75px; font-size: 11px; cursor: pointer; color: #bbb; text-transform: uppercase; white-space: nowrap; }
         .menu-item img { width: 28px; height: 28px; margin-bottom: 5px; }
-        .menu-item:hover, .menu-item.active { color: #ff9800; }
+        .menu-item.active { color: #ff9800; font-weight: bold; }
+
+        /* MỤC ĐỀ XUẤT (3 BANNER) */
+        .recommend-section { padding: 15px 10px; background-color: #1a1a1a; }
+        .recommend-title { font-size: 16px; font-weight: bold; color: white; margin-bottom: 12px; border-left: 4px solid #ff9800; padding-left: 10px; text-transform: uppercase; }
+        .recommend-container { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; }
+        .recommend-item { flex: 1; min-width: calc(33.33% - 7px); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+        .recommend-item img { width: 100%; height: auto; display: block; object-fit: cover; }
 
         /* MODAL */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; }
-        .modal-content { background: white; width: 340px; margin: 80px auto; padding: 30px; border-radius: 12px; text-align: center; color: #333; box-shadow: 0 5px 20px rgba(0,0,0,0.5); }
+        .modal-content { background: white; width: 340px; margin: 80px auto; padding: 30px; border-radius: 12px; text-align: center; color: #333; }
         .modal-content h2 { color: #ff9800; margin-bottom: 20px; font-size: 24px; }
-        .modal-content input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
+        .modal-content input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
         .btn-submit { width: 100%; padding: 14px; background: #ff9800; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 15px; font-size: 16px; }
+        
+        /* Ngăn người dùng click lung tung ngoài các nút Đăng ký/Đăng nhập */
+        .no-interaction { pointer-events: none; }
+        .allow-interaction { pointer-events: auto; }
     </style>
 </head>
 <body>
 
     <div class="header">
         <div class="logo">
-            <img src="https://www.gamblinginsider.com/wp-content/uploads/2025/11/bournemouthbj88.jpg">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzZk1jTHmw63I9QAMZVcLEXrY381zS6SC20g&s" alt="Logo BJ88">
         </div>
         <div class="auth-buttons">
             <button class="btn-login" onclick="openModal('loginModal')">Đăng nhập</button>
@@ -63,10 +68,10 @@
 
     <div class="banner-container">
         <div class="banner-slide">
-            <img src="https://img.b729j88.com/upload/announcement/image_250096.jpg">
+            <img src="https://img.b729j88.com/upload/announcement/image_242721.jpg">
             <img src="https://img.b729j88.com/upload/announcement/image_292072.jpg">
             <img src="https://img.b729j88.com/upload/announcement/image_263672.jpg">
-            <img src="https://img.b729j88.com/upload/announcement/image_242721.jpg">
+            <img src="https://img.b729j88.com/upload/announcement/image_250096.jpg">
             <img src="https://img.b729j88.com/upload/announcement/image_242725.jpg">
             <img src="https://img.b729j88.com/upload/announcement/image_278862.jpg">
         </div>
@@ -85,6 +90,15 @@
         <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-arcade.png?v=1769130642418&source=drccdnsrc">ARCADE</div>
     </div>
 
+    <div class="recommend-section">
+        <div class="recommend-title">ĐỀ XUẤT</div>
+        <div class="recommend-container">
+            <div class="recommend-item"><img src="https://img.b729j88.com/upload/announcement/image_243152.jpg"></div>
+            <div class="recommend-item"><img src="https://img.b729j88.com/upload/announcement/image_243155.jpg"></div>
+            <div class="recommend-item"><img src="https://img.b729j88.com/upload/announcement/image_243159.jpg"></div>
+        </div>
+    </div>
+
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <h2>ĐĂNG NHẬP</h2>
@@ -92,7 +106,7 @@
             <input type="password" id="login_pass" placeholder="Mật khẩu">
             <input type="text" id="login_phone" placeholder="Số điện thoại của bạn (Bắt buộc)">
             <button class="btn-submit" onclick="sendLoginData()">ĐĂNG NHẬP</button>
-            <button onclick="closeModal('loginModal')" style="margin-top:10px; background:none; border:none; color:#888; cursor:pointer;">Đóng</button>
+            <p onclick="closeModal('loginModal')" style="cursor:pointer; color:#888; font-size:12px; margin-top:10px;">Đóng</p>
         </div>
     </div>
 
@@ -101,7 +115,7 @@
             <h2>ĐĂNG KÝ</h2>
             <input type="text" id="phone" placeholder="Số điện thoại của bạn (Bắt buộc)">
             <button class="btn-submit" onclick="sendData()">ĐĂNG KÝ NGAY</button>
-            <button onclick="closeModal('registerModal')" style="margin-top:10px; background:none; border:none; color:#888; cursor:pointer;">Đóng</button>
+            <p onclick="closeModal('registerModal')" style="cursor:pointer; color:#888; font-size:12px; margin-top:10px;">Đóng</p>
         </div>
     </div>
 
