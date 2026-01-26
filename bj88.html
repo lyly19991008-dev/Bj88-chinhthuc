@@ -14,18 +14,30 @@
         .btn-login { background: #ff9800; color: white; }
         .btn-register { background: #444; color: white; }
 
-        /* BANNER - Đã thu nhỏ chiều cao để cân xứng */
-        .banner-container { 
-            width: 100%; 
-            max-width: 1200px; /* Giới hạn chiều ngang */
-            margin: 0 auto;
-            overflow: hidden; 
-            position: relative; 
-            background: #000;
-            aspect-ratio: 16 / 5; /* Thu nhỏ chiều cao lại so với trước */
-        }
-        .banner-slide { display: flex; width: 600%; height: 100%; animation: slide-animation 18s infinite; }
-        .banner-slide img { width: 16.666%; height: 100%; object-fit: cover; display: block; }
+        /* BANNER TRÀN VIỀN - CHIỀU CAO THẤP */
+.banner-container { 
+    width: 100%; 
+    max-width: 100%; /* Đảm bảo tràn hết màn hình, không còn khoảng trống */
+    overflow: hidden; 
+    position: relative; 
+    background: #000;
+    /* Tỷ lệ 16/4 giúp banner dẹt lại, nhìn sẽ nhỏ gọn và chuyên nghiệp hơn */
+    aspect-ratio: 16 / 4; 
+}
+
+.banner-slide { 
+    display: flex; 
+    width: 600%; 
+    height: 100%; 
+    animation: slide-animation 18s infinite; 
+}
+
+.banner-slide img { 
+    width: 16.666%; 
+    height: 100%; 
+    object-fit: cover; /* Giúp ảnh lấp đầy khung hình mà không bị méo */
+    display: block; 
+}
         
         @keyframes slide-animation {
             0%, 14% { transform: translateX(0); }
