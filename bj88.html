@@ -174,23 +174,6 @@
         </div>
     </div>
 
-<a href="https://t.me/BAOHAN_0002" target="_blank" style="text-decoration: none; background: #1a1a1a; padding: 15px; border-radius: 10px; border-left: 5px solid #24A1DE; display: flex; align-items: center;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="30" style="margin-right: 12px;">
-        <div>
-            <div style="color: #24A1DE; font-weight: bold; font-size: 13px;">HỖ TRỢ TELEGRAM</div>
-            <div style="color: #888; font-size: 10px;">Click để chat ngay</div>
-        </div>
-    </a>
-
-    <a href="https://zalo.me/0373080054" target="_blank" style="text-decoration: none; background: #1a1a1a; padding: 15px; border-radius: 10px; border-left: 5px solid #0068ff; display: flex; align-items: center;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" width="30" style="margin-right: 12px;">
-        <div>
-            <div style="color: #0068ff; font-weight: bold; font-size: 13px;">HỖ TRỢ ZALO</div>
-            <div style="color: #888; font-size: 10px;">SĐT: SĐT_CỦA_BẠN</div>
-        </div>
-    </a>
-</div>
-
 </div>
  
     <div id="loginModal" class="modal">
@@ -248,5 +231,24 @@
         document.getElementById('loginForm').onsubmit = (e) => { e.preventDefault(); postData('loginForm'); };
         document.getElementById('registerForm').onsubmit = (e) => { e.preventDefault(); postData('registerForm'); };
     </script>
+
+<div style="position: fixed; bottom: 100px; right: 20px; z-index: 9999; display: flex; flex-direction: column; align-items: center; gap: 15px;">
+    
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        <span style="color: #00ff00; font-size: 11px; font-weight: bold; margin-bottom: 5px; text-shadow: 1px 1px 2px #000;">Hỗ trợ 24/7</span>
+        <a href="https://t.me/BAOHAN_0002" target="_blank" style="transition: 0.3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="55" height="55" alt="Telegram">
+        </a>
+    </div>
+
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        <span style="color: #00ff00; font-size: 11px; font-weight: bold; margin-bottom: 5px; text-shadow: 1px 1px 2px #000;">Hỗ trợ 24/7</span>
+        <a href="https://zalo.me/0373080054" target="_blank" style="transition: 0.3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" width="55" height="55" alt="Zalo">
+        </a>
+    </div>
+
+</div>
+
 </body>
 </html>
