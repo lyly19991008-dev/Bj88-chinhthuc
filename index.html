@@ -51,6 +51,40 @@
         padding: 15px 5px;
     }
 }
+        /* Đoạn code định dạng 4 Banner tròn mạ vàng */
+.banner-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Chia thành 4 cột đều nhau */
+    gap: 20px; /* Khoảng cách giữa các banner */
+    padding: 30px 10%; /* Khoảng cách phía trên/dưới và 2 bên */
+    background-color: #1a1a1a; /* Màu nền đen xám */
+    justify-content: center;
+}
+
+.banner-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.banner-item img {
+    width: 100%;
+    max-width: 150px; /* Kích thước banner tròn */
+    height: auto;
+    object-fit: contain;
+    border-radius: 50%; /* Làm ảnh tròn */
+    box-shadow: 0 5px 15px rgba(255, 180, 0, 0.3); /* Đổ bóng màu vàng nhẹ */
+}
+
+/* Chỉnh cho mobile */
+@media (max-width: 768px) {
+    .banner-grid {
+        grid-template-columns: repeat(2, 1fr); /* Chuyển thành 2 cột */
+        gap: 15px;
+        padding: 20px 5%;
+    }
+}
     </style>
 </head>
 <body>
@@ -84,6 +118,21 @@
         BJ88 – HỆ SINH THÁI CÁ CƯỢC ĐÁ GÀ VÀ GAME GIẢI TRÍ ĐA DẠNG
     </div>
 
+    <div class="banner-grid">
+    <div class="banner-item">
+        <img src="https://ipzpkp.sa.com/wp-content/uploads/2025/05/casino-280x280-1.webp" alt="Casino">
+    </div>
+    <div class="banner-item">
+        <img src="https://ipzpkp.sa.com/wp-content/uploads/2025/05/the-thao-280x280-1.webp" alt="Thể thao">
+    </div>
+    <div class="banner-item">
+        <img src="https://ipzpkp.sa.com/wp-content/uploads/2025/05/da-ga-280x280-1.webp" alt="Đá Gà">
+    </div>
+    <div class="banner-item">
+        <img src="https://ipzpkp.sa.com/wp-content/uploads/2025/05/xo-so-280x280-1.webp" alt="Xổ Số">
+    </div>
+</div>
+    
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <h2>ĐĂNG NHẬP</h2>
