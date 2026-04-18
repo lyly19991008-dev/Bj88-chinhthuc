@@ -29,6 +29,28 @@
         .modal-content h2 { color: #ff9800; margin-bottom: 20px; font-size: 24px; }
         .modal-content input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
         .btn-submit { width: 100%; padding: 14px; background: #ff9800; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 15px; font-size: 16px; }
+   /* Đoạn code định dạng dòng chữ quảng cáo */
+.promo-text {
+    background-color: #1a1a1a; /* Màu nền đen xám giống ảnh */
+    color: #ffb400; /* Màu vàng chuẩn */
+    text-align: center;
+    padding: 20px 10px;
+    font-size: 24px; /* Kích thước chữ to */
+    font-weight: bold;
+    text-transform: uppercase; /* Viết hoa toàn bộ */
+    letter-spacing: 1px;
+    border-top: 1px solid #333; /* Đường kẻ mờ phía trên */
+    border-bottom: 1px solid #333; /* Đường kẻ mờ phía dưới */
+    margin-top: 5px;
+}
+
+/* Chỉnh cho mobile chữ nhỏ lại một chút để không bị tràn dòng */
+@media (max-width: 768px) {
+    .promo-text {
+        font-size: 16px;
+        padding: 15px 5px;
+    }
+}
     </style>
 </head>
 <body>
@@ -56,6 +78,10 @@
         <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-table.png?v=1776164060658&source=drccdnsrc">GAME BÀI</div>
         <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-crash.png?v=1776164060658&source=drccdnsrc">CRASH</div>
         <div class="menu-item"><img src="https://img.b729j88.com/bj8/h5/assets/images/dark/game-nav-icon/icon-arcade.png?v=1776164060658&source=drccdnsrc">ARCADE</div>
+    </div>
+
+    <div class="promo-text">
+        BJ88 – HỆ SINH THÁI CÁ CƯỢC ĐÁ GÀ VÀ GAME GIẢI TRÍ ĐA DẠNG
     </div>
 
     <div id="loginModal" class="modal">
