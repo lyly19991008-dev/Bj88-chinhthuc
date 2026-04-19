@@ -85,15 +85,15 @@
         padding: 20px 5%;
     }
 }
-       /* BONG BÓNG CHAT TỰ TỐI ƯU CHO ĐIỆN THOẠI */
+       /* BONG BÓNG CHAT TỰ TỐI ƯU CHO MOBILE */
 .floating-support {
-    position: fixed;
-    bottom: 15px;    /* Sát đáy hơn một chút trên điện thoại */
-    right: 15px;     /* Sát mép phải hơn */
+    position: fixed !important;
+    bottom: 20px;
+    right: 15px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    z-index: 99999;
+    gap: 12px;
+    z-index: 999999;
 }
 
 .floating-btn {
@@ -104,30 +104,23 @@
 }
 
 .support-icon {
-    width: 45px;  /* Kích thước vừa phải cho cả mobile */
+    width: 45px;
     height: 45px;
     border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
 
 .support-label {
     color: #00ff00;
-    font-size: 9px; /* Chữ nhỏ lại để không bị thô */
+    font-size: 9px;
     font-weight: bold;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
     text-shadow: 1px 1px 2px #000;
 }
 
-/* RIÊNG CHO ĐIỆN THOẠI (Màn hình nhỏ hơn 768px) */
 @media (max-width: 768px) {
-    .support-icon {
-        width: 40px; /* Icon nhỏ lại một chút trên điện thoại */
-        height: 40px;
-    }
-    .floating-support {
-        bottom: 10px;
-        right: 10px;
-    }
+    .support-icon { width: 40px; height: 40px; }
+    .floating-support { bottom: 15px; right: 10px; }
 }
         
     </style>
@@ -243,19 +236,16 @@
 
     <div style="display: flex; justify-content: space-between; align-items: center; background-color: #1a1a1a; padding: 10px 20px; border-top: 1px solid #333; border-bottom: 1px solid #333; margin-top: 5px;">
    
-    <div style="display: flex; gap: 15px; align-items: center;">
-        <div class="floating-support">
-    
+    <div class="floating-support">
     <a href="https://t.me/BAOHAN_0002" target="_blank" class="floating-btn">
         <span class="support-label">Hỗ trợ 24/7</span>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="support-icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" class="support-icon">
     </a>
 
     <a href="https://zalo.me/855713820040" target="_blank" class="floating-btn">
         <span class="support-label">Hỗ trợ 24/7</span>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo" class="support-icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" class="support-icon">
     </a>
-
 </div>
         
 </body>
