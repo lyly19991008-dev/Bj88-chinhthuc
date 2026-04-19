@@ -88,11 +88,11 @@
        /* BONG BÓNG CHAT TỰ TỐI ƯU CHO MOBILE */
 .floating-support {
     position: fixed !important;
-    bottom: 20px;
+    bottom: 120px; /* Độ cao vừa phải, ngay trên các banner tròn */
     right: 15px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     z-index: 999999;
 }
 
@@ -101,26 +101,38 @@
     flex-direction: column;
     align-items: center;
     text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.floating-btn:hover {
+    transform: scale(1.1);
 }
 
 .support-icon {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
 .support-label {
     color: #00ff00;
-    font-size: 9px;
+    font-size: 10px;
     font-weight: bold;
-    margin-bottom: 3px;
+    margin-bottom: 2px;
     text-shadow: 1px 1px 2px #000;
 }
 
+/* Tối ưu cho điện thoại */
 @media (max-width: 768px) {
-    .support-icon { width: 40px; height: 40px; }
-    .floating-support { bottom: 15px; right: 10px; }
+    .floating-support {
+        bottom: 110px; /* Đẩy lên đúng tầm mũi tên đỏ trên điện thoại */
+        right: 10px;
+    }
+    .support-icon {
+        width: 40px;
+        height: 40px;
+    }
 }
         
     </style>
